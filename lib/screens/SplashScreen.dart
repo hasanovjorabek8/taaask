@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images.png', // Add your logo or splash image here
+              'assets/images/image.png', // Add your logo or splash image here
               height: 120,
             ),
             SizedBox(height: 20),

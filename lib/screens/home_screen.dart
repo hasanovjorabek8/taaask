@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/images.png',
+              'assets/images/image.png',
               height: 48,
               width: 48,
             ),

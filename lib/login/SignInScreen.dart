@@ -19,7 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.15),
             Image.asset(
-              'assets/edu_learn_logo.png',
+              'assets/images/image.png',
               height: 80,
             ),
             SizedBox(height: 20),
