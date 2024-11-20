@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'SignUpScreen.dart'; // Import the SplashScreen file
-import 'SignInScreen.dart'; // Import the SignInScreen file
-import 'SplashScreen.dart';
+import 'login/SignUpScreen.dart'; // Import the SplashScreen file
+import 'login/SignInScreen.dart'; // Import the SignInScreen file
+import 'screens/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'SignInScreen.dart'; // Import your sign-in screen
+import '../login/SignInScreen.dart'; // Import your sign-in screen
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -28,18 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/edu_learn_logo.png', // Add your logo or splash image here
+              'assets/images.png', // Add your logo or splash image here
               height: 120,
             ),
             SizedBox(height: 20),
-            Text(
-              "EduLearn",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-              ),
-            ),
           ],
         ),
       ),

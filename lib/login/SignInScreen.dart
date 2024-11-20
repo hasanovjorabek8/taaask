@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:projrect_task/screens/main_screen.dart';
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -69,6 +69,10 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavScreen()), // Replace `NextScreen` with your desired screen widget
+                );
                 // Sign-in functionality
               },
               child: Text('Sign in'),
@@ -105,6 +109,7 @@ class _SignInScreenState extends State<SignInScreen> {
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/signup'); // Navigate to sign-up screen
+
               },
               child: Text('Don’t have an account? Sign Up'),
             ),

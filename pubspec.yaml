@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   font_awesome_flutter: ^10.1.0
+  flick_video_player: ^0.9.0
+  video_player: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -23,5 +25,11 @@ flutter:
 
   # Add assets section if you have images in the app
   assets:
-    - assets/edu_learn_logo.png
+    - assets/videos/sample.mp4
+    - assets/images.png
+    - assets/images/web-developer.jpg
+    - assets/images/python_developer.jpg
+    - assets/images/Arduino.webp
+    - assets/images/Cyber_security.webp
+
     # Add other image paths here if needed

@@ -7,25 +7,25 @@ class HomeScreen extends StatelessWidget {
     {
       'title': 'Python Developer',
       'description': 'Master Python programming for various applications.',
-      'imageAsset': 'assets/images/python.png',
+      'imageAsset': 'assets/images/python_developer.jpg',
       'progress': 0.3,
     },
     {
       'title': 'Arduino',
       'description': 'Learn to create and control electronic projects.',
-      'imageAsset': 'assets/images/arduino.png',
+      'imageAsset': 'assets/images/Arduino.webp',
       'progress': 0.6,
     },
     {
       'title': 'Web Developer',
       'description': 'Develop modern websites and web applications.',
-      'imageAsset': 'assets/images/web.png',
+      'imageAsset': 'assets/images/web-developer.jpg',
       'progress': 0.4,
     },
     {
       'title': 'Cybersecurity',
       'description': 'Learn to secure systems and protect against threats.',
-      'imageAsset': 'assets/images/cybersecurity.png',
+      'imageAsset': 'assets/images/Cyber_security.webp',
       'progress': 0.2,
     },
   ];
@@ -38,26 +38,25 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: Row(
           children: [
-            // Replace language icon with a logo image
             Image.asset(
-              'assets/images/logo.png',  // Update with your logo image path
-              height: 24,
-              width: 24,
+              'assets/images.png',
+              height: 48,
+              width: 48,
             ),
             const SizedBox(width: 8),
             const Text(
               'EduLearn',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white ),
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.white),
+            icon: const Icon(Icons.notifications_none_outlined, color: Colors.orange,),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
+            icon: const Icon(Icons.search, color: Colors.orange,),
             onPressed: () {},
           ),
         ],
@@ -84,13 +83,14 @@ class HomeScreen extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),
-              child: Text(
+              child:Center(
+              child:  Text(
                 'Courses',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
+               ),
               ),
             ),
             GridView.builder(
@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                             top: Radius.circular(15),
                           ),
                           child: Image.asset(
-                            course['imageAsset'] ?? 'assets/images/placeholder.png',
+                            course['imageAsset'] ?? 'assets/images/Cyber_security.webp',
                             fit: BoxFit.cover,
                             width: double.infinity,
                           ),
@@ -131,7 +131,6 @@ class HomeScreen extends StatelessWidget {
                           course['title'] ?? 'No Title',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white, // Changed to white
                           ),
                         ),
                       ),
@@ -139,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
                           course['description'] ?? 'No Description',
-                          style: const TextStyle(fontSize: 12, color: Colors.white),
+                          style: const TextStyle(fontSize: 12, color: Colors.black54),
                         ),
                       ),
                       Padding(
@@ -147,12 +146,12 @@ class HomeScreen extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.orange,  // Changed to orange
+                            backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ),
-                          child: const Text('Enroll Now', style: TextStyle(color: Colors.white)),  // Changed to white text
+                          child: const Text('Enroll Now', style: TextStyle(color: Colors.white)),
                         ),
                       ),
                     ],
@@ -162,13 +161,14 @@ class HomeScreen extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),
+              child:Center(
               child: Text(
                 'My Courses',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
+               ),
               ),
             ),
             ListView.builder(
@@ -186,20 +186,17 @@ class HomeScreen extends StatelessWidget {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        course['imageAsset'] ?? 'assets/images/placeholder.png',
+                        course['imageAsset'] ?? 'assets/images/python_developer.png',
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,
                       ),
                     ),
-                    title: Text(
-                      course['title'] ?? 'No Title',
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    title: Text(course['title'] ?? 'No Title'),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(course['description'] ?? 'No Description', style: TextStyle(color: Colors.white)),
+                        Text(course['description'] ?? 'No Description'),
                         const SizedBox(height: 8),
                         LinearProgressIndicator(
                           value: course['progress'] ?? 0.0,
@@ -211,9 +208,9 @@ class HomeScreen extends StatelessWidget {
                     trailing: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,  // Changed to orange
+                        backgroundColor: Colors.green,
                       ),
-                      child: const Text('Continue', style: TextStyle(color: Colors.red)),  // Changed to white text
+                      child: const Text('Continue',style: TextStyle(color: Colors.white),),
                     ),
                   ),
                 );

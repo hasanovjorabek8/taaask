@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projrect_task/screens/main_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -102,6 +103,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavScreen()), // Replace `NextScreen` with your desired screen widget
+                );
                 // Sign up functionality
               },
               child: Text('Sign Up'),
