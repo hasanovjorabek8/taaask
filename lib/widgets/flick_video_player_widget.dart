@@ -1,58 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-class FlickVideoPlayerWidget extends StatefulWidget {
-  final String videoUrl;
 
-  const FlickVideoPlayerWidget({required this.videoUrl, Key? key}) : super(key: key);
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<FlickVideoPlayerWidget> createState() => _FlickVideoPlayerWidgetState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'YouTube Player',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const YouTubePlayerScreen(videoId: 'QdBZY2fkU-0'), // Pass video ID
+    );
+  }
 }
 
-class _FlickVideoPlayerWidgetState extends State<FlickVideoPlayerWidget> {
-  late VideoPlayerController _controller;
+class YouTubePlayerScreen extends StatefulWidget {
+  final String videoId;
+
+  const YouTubePlayerScreen({Key? key, required this.videoId}) : super(key: key);
+
+  @override
+  _YouTubePlayerScreenState createState() => _YouTubePlayerScreenState();
+}
+
+class _YouTubePlayerScreenState extends State<YouTubePlayerScreen> {
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((_) {
-        setState(() {});
-      });
-    _controller.play();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    _controller = YoutubePlayerController(
+      params: const YoutubePlayerParams(
+        showControls: true,
+        showFullscreenButton: true,
+      ),
+    )..loadVideoById(videoId: widget.videoId); // Set video ID here
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Video Player'),
+        title: const Text('YouTube Player'),
       ),
       body: Center(
-        child: _controller.value.isInitialized
-            ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        )
-            : const CircularProgressIndicator(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _controller.value.isPlaying ? _controller.pause() : _controller.play();
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+        child: YoutubePlayer(
+          controller: _controller,
+          aspectRatio: 16 / 9, // Set the aspect ratio
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
   }
 }

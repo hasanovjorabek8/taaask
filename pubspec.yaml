@@ -1,7 +1,6 @@
 name: projrect_task
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -11,19 +10,20 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  font_awesome_flutter: ^10.1.0
-  flick_video_player: ^0.9.0
-  video_player: ^2.5.0
+  font_awesome_flutter: ^10.8.0
+  youtube_player_iframe: ^5.2.1
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
 
-  # Add assets section if you have images in the app
+
   assets:
     - assets/videos/sample.mp4
     - assets/images/image.png
@@ -31,5 +31,8 @@ flutter:
     - assets/images/python_developer.jpg
     - assets/images/Arduino.webp
     - assets/images/Cyber_security.webp
-
+    - assets/images/photo.jpg
+    - assets/images/photo_2.jpg
+    - assets/images/photo_3.jpg
+    - assets/videos/just.mp4
     # Add other image paths here if needed

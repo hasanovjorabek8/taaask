@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projrect_task/courses/arduino_course.dart';
 
 void main() {
   runApp(const MyApp());
@@ -213,7 +214,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ArduinoScreen()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
@@ -277,7 +283,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     trailing: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ArduinoScreen()),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                       ),

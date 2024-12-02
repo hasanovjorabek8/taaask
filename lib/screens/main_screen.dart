@@ -53,12 +53,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.initState();
     _screens = [
       HomeScreen(),
-      CoursesScreen(
-        title: courses[0]['title'],
-        description: courses[0]['description'],
-        introVideoUrl: courses[0]['introVideoUrl'],
-        modules: courses[0]['modules'],
-      ),
+      CoursesScreen(),
       MyCoursesScreen(),
     ];
   }
