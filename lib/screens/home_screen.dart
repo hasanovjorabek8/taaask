@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projrect_task/courses/arduino_course.dart';
+import 'package:taaask/courses/python_course.dart';
+import 'package:taaask/courses/courses_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -217,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ArduinoScreen()),
+                              MaterialPageRoute(builder: (context) => PythonCourse()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -286,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ArduinoScreen()),
+                          MaterialPageRoute(builder: (context) => CoursesScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

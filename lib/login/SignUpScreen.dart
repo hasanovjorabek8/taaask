@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projrect_task/screens/main_screen.dart';
+import 'package:taaask/screens/main_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

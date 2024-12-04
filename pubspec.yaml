@@ -1,4 +1,4 @@
-name: projrect_task
+name: taaask
 description: "A new Flutter project."
 publish_to: 'none'
 version: 1.0.0+1
@@ -35,4 +35,8 @@ flutter:
     - assets/images/photo_2.jpg
     - assets/images/photo_3.jpg
     - assets/videos/just.mp4
+    - assets/ard.png
+    - assets/ard-logo.png
+    - assets/python.png
+    - assets/images/python_background.jpg
     # Add other image paths here if needed

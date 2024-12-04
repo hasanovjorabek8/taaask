@@ -1,20 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projrect_task/widgets/flick_video_player_widget.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-class CoursesScreen extends StatefulWidget {
-  const CoursesScreen({super.key});
+class PythonCourse extends StatefulWidget {
+  const PythonCourse({super.key});
 
   @override
-  State<CoursesScreen> createState() => _CoursesScreenState();
+  State<PythonCourse> createState() => _PythonCourseState();
 }
 
-class _CoursesScreenState extends State<CoursesScreen> {
+class _PythonCourseState extends State<PythonCourse> {
   final List<Map<String, String>> videos = [
-    {"title": "Learn Flutter Basics", "videoId": "QdBZY2fkU-0"},
-    {"title": "State Management in Flutter", "videoId": "CRRlbzzt3VA"},
-    {"title": "Advanced Animations", "videoId": "dQw4w9WgXcQ"},//etot ne rabotaet
+    {"title": "Lesson #1 Introduction to \n Arduino and Setup", "videoId": "nrczO8tWJNg"},
+    {"title": "Lesson #2 Basic Electronics and \n Circuit Building", "videoId": "CRRlbzzt3VA"},
+    {"title": "Lesson #3 Programming Arduino \n (Basic Concepts)", "videoId": "gmgw6nLgzbY"},
+    {"title": "Lesson #4 Intermediate Projects \n and Sensors ", "videoId": "hnKImcN3jYE"},
+    {"title": "Lesson #5 Advanced Topics \n and Integration", "videoId": "Ik7SwQ477mA"},
   ];
 
   void navigateToVideoPage(int index) {
@@ -123,7 +124,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -154,7 +155,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
                     child: Image.asset(
-                      'assets/images/photo.jpg',
+                      'assets/images/python_background.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -246,7 +247,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             height: 100,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/images/photo_2.jpg'),
+                                image: AssetImage('assets/python.png'),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(12),
@@ -333,11 +334,78 @@ class _KitobState extends State<Kitob> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Course Video"),
+        title: const Text("Arduino - First Start"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: YouTubePlayerScreen(videoId: 'wPX6JaWm0u0'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Video Player Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: YoutubePlayer(
+                controller: _controller,
+                aspectRatio: 16 / 9,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lesson Summary Section
+            Text(
+              "Lesson Summary",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "This video provides a step-by-step tutorial on how to set up an Arduino, including connecting it, downloading the Arduino IDE and necessary drivers, and troubleshooting common issues.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 8),
+
+            // Key Points Section
+            Text(
+              "Key Points:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Download and install the Arduino IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install drivers for Chinese Arduino boards."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Connect and configure the Arduino in the IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Upload a sketch and troubleshoot common issues."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install and use libraries in Arduino projects."),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -377,11 +445,78 @@ class _Kitob2State extends State<Kitob2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Course Video"),
+        title: const Text("Arduino - First Start"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: YouTubePlayerScreen(videoId: 'nrczO8tWJNg'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Video Player Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: YoutubePlayer(
+                controller: _controller,
+                aspectRatio: 16 / 9,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lesson Summary Section
+            Text(
+              "Lesson Summary",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "This video provides a step-by-step tutorial on how to set up an Arduino, including connecting it, downloading the Arduino IDE and necessary drivers, and troubleshooting common issues.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 8),
+
+            // Key Points Section
+            Text(
+              "Key Points:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Download and install the Arduino IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install drivers for Chinese Arduino boards."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Connect and configure the Arduino in the IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Upload a sketch and troubleshoot common issues."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install and use libraries in Arduino projects."),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -420,11 +555,78 @@ class _Kitob3State extends State<Kitob3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Course Video"),
+        title: const Text("Arduino - First Start"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: YouTubePlayerScreen(videoId: 'CRRlbzzt3VA'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Video Player Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: YoutubePlayer(
+                controller: _controller,
+                aspectRatio: 16 / 9,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lesson Summary Section
+            Text(
+              "Lesson Summary",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "This video provides a step-by-step tutorial on how to set up an Arduino, including connecting it, downloading the Arduino IDE and necessary drivers, and troubleshooting common issues.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 8),
+
+            // Key Points Section
+            Text(
+              "Key Points:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Download and install the Arduino IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install drivers for Chinese Arduino boards."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Connect and configure the Arduino in the IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Upload a sketch and troubleshoot common issues."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install and use libraries in Arduino projects."),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -462,11 +664,78 @@ class _Kitob4State extends State<Kitob4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Course Video"),
+        title: const Text("Arduino - First Start"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: YouTubePlayerScreen(videoId: 'tm831gRkscY'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Video Player Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: YoutubePlayer(
+                controller: _controller,
+                aspectRatio: 16 / 9,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lesson Summary Section
+            Text(
+              "Lesson Summary",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "This video provides a step-by-step tutorial on how to set up an Arduino, including connecting it, downloading the Arduino IDE and necessary drivers, and troubleshooting common issues.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 8),
+
+            // Key Points Section
+            Text(
+              "Key Points:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Download and install the Arduino IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install drivers for Chinese Arduino boards."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Connect and configure the Arduino in the IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Upload a sketch and troubleshoot common issues."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install and use libraries in Arduino projects."),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -476,8 +745,9 @@ class Kitob5 extends StatefulWidget {
   const Kitob5({super.key, required this.videoId});
 
   @override
-  State<Kitob5> createState() => _Kitob5State();//togri
+  State<Kitob5> createState() => _Kitob5State();
 }
+
 class _Kitob5State extends State<Kitob5> {
   late YoutubePlayerController _controller;
 
@@ -496,19 +766,86 @@ class _Kitob5State extends State<Kitob5> {
 
   @override
   void dispose() {
-    super.dispose();
     _controller.close();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Course Video"),
+        title: const Text("Arduino - First Start"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: YouTubePlayerScreen(videoId: 'gmgw6nLgzbY'),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Video Player Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: YoutubePlayer(
+                controller: _controller,
+                aspectRatio: 16 / 9,
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lesson Summary Section
+            Text(
+              "Lesson Summary",
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.teal,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "This video provides a step-by-step tutorial on how to set up an Arduino, including connecting it, downloading the Arduino IDE and necessary drivers, and troubleshooting common issues.",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 8),
+
+            // Key Points Section
+            Text(
+              "Key Points:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Download and install the Arduino IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install drivers for Chinese Arduino boards."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Connect and configure the Arduino in the IDE."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Upload a sketch and troubleshoot common issues."),
+                ),
+                ListTile(
+                  leading: Icon(Icons.check, color: Colors.green),
+                  title: Text("Install and use libraries in Arduino projects."),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'my_courses_screen.dart';
-import 'courses_screen.dart';
+import '../courses/courses_screen.dart';
 
 void main() => runApp(EduLearnApp());
 
@@ -73,10 +73,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Courses',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_books),
