@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taaask/courses/python_course.dart';
+import 'package:taaask/courses/webdeveloper_course.dart';
+import 'package:taaask/courses/cybersecurity_course.dart';
 import 'package:taaask/courses/courses_screen.dart';
 
 void main() {
@@ -34,37 +36,76 @@ class _HomeScreenState extends State<HomeScreen> {
       'description': 'Master Python programming for various applications.',
       'imageAsset': 'assets/images/python_developer.jpg',
       'progress': 0.3,
-      'status': 'Progress', // Status: Progress
+      'status': 'Progress',
+      'route': PythonCourse(),
     },
     {
       'title': 'Arduino',
       'description': 'Learn to create and control electronic projects.',
       'imageAsset': 'assets/images/Arduino.webp',
       'progress': 1.0,
-      'status': 'Finished', // Status: Finished
+      'status': 'Finished',
+      'route': CoursesScreen(),
     },
     {
       'title': 'Web Developer',
       'description': 'Develop modern websites and web applications.',
       'imageAsset': 'assets/images/web-developer.jpg',
       'progress': 0.0,
-      'status': 'New', // Status: New
+      'status': 'New',
+      'route': WebDeveloperCourse(),
     },
     {
       'title': 'Cybersecurity',
       'description': 'Learn to secure systems and protect against threats.',
       'imageAsset': 'assets/images/Cyber_security.webp',
       'progress': 0.2,
-      'status': 'Trends', // Status: Trends
+      'status': 'Trends',
+      'route': CyberSecurityCourse(),
     },
   ];
 
-  String selectedFilter = 'All'; // Default filter
-  bool showFilterOptions = false; // Boolean to control the visibility of options
+  final List<Map<String, dynamic>> myCourses = [
+    {
+      'title': 'Network Administration',
+      'description': 'Configuring and Securing Networks',
+      'imageAsset': 'assets/images/Arduino.webp',
+      'progress': 0.5,
+      'status': 'Complete',
+      'route': CoursesScreen(), // Замените на нужный маршрут
+    },
+    {
+      'title': 'Mobile App Development',
+      'description': 'Building iOS Apps and Android Apps',
+      'imageAsset': 'assets/images/Arduino.webp',
+      'progress': 0.5,
+      'status': 'Complete',
+      'route': CoursesScreen(), // Замените на нужный маршрут
+    },
+
+    {
+      'title': 'Network Administration',
+      'description': 'Configuring and Securing Networks',
+      'imageAsset': 'assets/images/Arduino.webp',
+      'progress': 0.5,
+      'status': 'Complete',
+      'route': CoursesScreen(), // Замените на нужный маршрут
+    },
+    {
+      'title': 'Mobile App Development',
+      'description': 'Building iOS Apps and Android Apps',
+      'imageAsset': 'assets/images/Arduino.webp',
+      'progress': 0.5,
+      'status': 'Complete',
+      'route': CoursesScreen(), // Замените на нужный маршрут
+    },
+  ];
+
+  String selectedFilter = 'All';
+  bool showFilterOptions = false;
 
   @override
   Widget build(BuildContext context) {
-    // Filter courses based on the selected filter
     List<Map<String, dynamic>> filteredCourses = selectedFilter == 'All'
         ? courses
         : courses.where((course) => course['status'] == selectedFilter).toList();
@@ -190,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: Radius.circular(15),
                           ),
                           child: Image.asset(
-                            course['imageAsset'] ?? 'assets/images/Cyber_security.webp',
+                            course['imageAsset'] ?? 'assets/images/default_image.jpg',
                             fit: BoxFit.cover,
                             width: double.infinity,
                           ),
@@ -218,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => PythonCourse()),
+                              MaterialPageRoute(builder: (context) => course['route']),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -227,8 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ),
-                          child: const Text('Enroll Now',
-                              style: TextStyle(color: Colors.white)),
+                          child: const Text('Enroll Now', style: TextStyle(color: Colors.white)),
                         ),
                       ),
                     ],
@@ -242,33 +282,26 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Center(
                 child: Text(
                   'My Courses',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+
             ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: filteredCourses.length,
+              itemCount: myCourses.length,
               itemBuilder: (context, index) {
-                final course = filteredCourses[index];
+                final course = myCourses[index];
                 return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  margin: const EdgeInsets.only(bottom: 16),
                   child: ListTile(
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        course['imageAsset'] ?? 'assets/images/python_developer.png',
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                      ),
+                    leading: Image.asset(
+                      course['imageAsset'] ?? 'assets/images/default_image.jpg',
+                      width: 56,
+                      height: 56,
+                      fit: BoxFit.cover,
                     ),
                     title: Text(course['title'] ?? 'No Title'),
                     subtitle: Column(
@@ -277,8 +310,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(course['description'] ?? 'No Description'),
                         const SizedBox(height: 8),
                         LinearProgressIndicator(
-                          value: course['progress'] ?? 0.0,
-                          backgroundColor: Colors.grey[200],
+                          value: course['progress'],
+                          backgroundColor: Colors.grey[300],
                           color: Colors.orange,
                         ),
                       ],
@@ -287,13 +320,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CoursesScreen()),
+                          MaterialPageRoute(builder: (context) => course['route']),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                      ),
-                      child: const Text('Continue', style: TextStyle(color: Colors.white)),
+                      child: const Text('Continue'),
                     ),
                   ),
                 );

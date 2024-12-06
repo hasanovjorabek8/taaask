@@ -37,6 +37,7 @@ flutter:
     - assets/videos/just.mp4
     - assets/ard.png
     - assets/ard-logo.png
-    - assets/python.png
-    - assets/images/python_background.jpg
+    - assets/python.webp
+    - assets/python_back.png
+    - assets/images/mobile_app_development.png
     # Add other image paths here if needed

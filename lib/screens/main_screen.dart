@@ -3,7 +3,7 @@ import 'home_screen.dart';
 import 'my_courses_screen.dart';
 import '../courses/courses_screen.dart';
 
-void main() => runApp(EduLearnApp());
+
 
 class EduLearnApp extends StatelessWidget {
   @override
@@ -53,7 +53,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.initState();
     _screens = [
       HomeScreen(),
-      CoursesScreen(),
       MyCoursesScreen(),
     ];
   }

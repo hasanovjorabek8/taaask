@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:taaask/courses/courses_screen.dart';
+import 'package:taaask/courses/python_course.dart';
+import 'package:taaask/courses/webdeveloper_course.dart';
 
-class MyCoursesScreen extends StatelessWidget {
+class MyCoursesScreen extends StatefulWidget {
+  @override
+  _MyCoursesScreenState createState() => _MyCoursesScreenState();
+}
+
+class _MyCoursesScreenState extends State<MyCoursesScreen> {
   final List<Map<String, dynamic>> myCourses = [
     {
-      'title': 'Introduction to Web Development',
-      'instructor': 'Davit Rouben',
+      'title': 'Network Administration',
+      'description': 'Configuring and Securing Networks',
+      'imageAsset': 'assets/images/Arduino.webp',
       'progress': 0.5,
-      'icon': Icons.web,
+      'status': 'Complete',
+      'teacher': 'David Rouben',
     },
     {
-      'title': 'Advanced Python Programming',
-      'instructor': 'Jane Doe',
-      'progress': 0.8,
-      'icon': Icons.code,
-    },
-    {
-      'title': 'Cybersecurity Basics',
-      'instructor': 'John Smith',
-      'progress': 0.3,
-      'icon': Icons.security,
+      'title': 'Mobile App Development',
+      'description': 'Building iOS and Android Apps',
+      'imageAsset': 'assets/images/Arduino.webp',
+      'progress': 0.75,
+      'status': 'In Progress',
+      'teacher': 'Sarah Johnson',
     },
   ];
+
+  bool showFilterOptions = false;
+  String selectedFilter = 'All';
 
   @override
   Widget build(BuildContext context) {
@@ -41,106 +50,178 @@ class MyCoursesScreen extends StatelessWidget {
               style: TextStyle(
                   fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             ),
+            const Spacer(),
+            IconButton(
+              icon: const Icon(Icons.notifications_none_outlined, color: Colors.orange),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle_sharp, color: Colors.orange),
+              onPressed: () {},
+            ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none_outlined,
-                color: Colors.orange),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.orange),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Поле поиска
+            // Search section
             Container(
               color: Colors.blue[900],
               padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  prefixIcon: const Icon(Icons.search, color: Colors.blue),
-                  hintText: 'Search Courses',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Search Courses',
+                      prefixIcon: IconButton(
+                        icon: const Icon(Icons.filter_list, color: Colors.orangeAccent),
+                        onPressed: () {
+                          setState(() {
+                            showFilterOptions = !showFilterOptions;
+                          });
+                        },
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
                   ),
-                ),
+                  if (showFilterOptions)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Wrap(
+                        spacing: 8.0,
+                        runSpacing: 4.0,
+                        children: ['All', 'Progress', 'Finished', 'Trends'].map((option) {
+                          return FilterChip(
+                            label: Text(option),
+                            selected: selectedFilter == option,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                selectedFilter = selected ? option : 'All';
+                              });
+                            },
+                            selectedColor: Colors.orangeAccent,
+                            backgroundColor: Colors.grey[300],
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                ],
               ),
             ),
-            // Список курсов
+            // List of courses
             ListView.builder(
-              padding: const EdgeInsets.all(16.0),
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(16),
               itemCount: myCourses.length,
               itemBuilder: (context, index) {
                 final course = myCourses[index];
                 return Card(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  margin: const EdgeInsets.only(bottom: 16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ListTile(
-                        leading: Icon(
-                          course['icon'],
-                          size: 40,
-                          color: Colors.blue,
-                        ),
-                        title: Text(
-                          course['title'] ?? 'No Title',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          'Instructor: ${course['instructor']}',
-                          style: const TextStyle(color: Colors.black54),
-                        ),
+                      Image.asset(
+                        course['imageAsset'] ?? 'assets/images/default_image.jpg',
+                        width: double.infinity,
+                        height: 200,
+                        fit: BoxFit.cover,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Progress: ${(course['progress'] * 100).toInt()}%',
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              course['title'] ?? 'No Title',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            const SizedBox(height: 5),
-                            LinearProgressIndicator(
-                              value: course['progress'],
-                              backgroundColor: Colors.grey[200],
-                              color: Colors.orange,
+                            const SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Teacher: ${course['teacher']}',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.star, color: Colors.orange, size: 16),
+                                    Icon(Icons.star, color: Colors.orange, size: 16),
+                                    Icon(Icons.star, color: Colors.orange, size: 16),
+                                    Icon(Icons.star, color: Colors.orange, size: 16),
+                                    Icon(Icons.star_half, color: Colors.orange, size: 16),
+                                  ],
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 8),
+                            Text(
+                              course['description'] ?? 'No Description',
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            const SizedBox(height: 16),
+                            Stack(
+                              children: [
+                                LinearProgressIndicator(
+                                  value: course['progress'],
+                                  backgroundColor: Colors.grey[300],
+                                  color: Colors.orange,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Text(
+                                      '${(course['progress'] * 100).toInt()}%',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            // Navigation to course details
+                            ElevatedButton(
+                              onPressed: () {
+                                if (course['title'] == 'Network Administration') {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => PythonCourse()),
+                                  );
+                                } else if (course['title'] == 'Mobile App Development') {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => WebDeveloperCourse()),
+                                  );
+                                }
+                              },
+                              child: Text('Go to Course'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.white,
+                                minimumSize: Size(double.infinity, 50),
+                              ),
+                            ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Действие при нажатии
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text(
-                            'Continue Learning',
-                            style: TextStyle(color: Colors.white),
-                          ),
                         ),
                       ),
                     ],
